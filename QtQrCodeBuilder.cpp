@@ -13,8 +13,8 @@ QImage QtQrCodeBuilder::drawQrCodeImage(const QrCode &qrCode, int size, int marg
 {
     const int qrCodeSize = qrCode.getSize();
     const int totalSize = qrCodeSize + 2 * margin;
-    const int radio = size / totalSize;
-    const int sizeRounded = totalSize * radio;
+    const int ratio = size / totalSize;
+    const int sizeRounded = totalSize * ratio;
 
     QImage image(sizeRounded, sizeRounded, QImage::Format_ARGB32);
     QPainter painter(&image);
@@ -32,7 +32,7 @@ QImage QtQrCodeBuilder::drawQrCodeImage(const QrCode &qrCode, int size, int marg
         {
             bool isBlack = qrCode.getModule(x, y);
             if (isBlack)
-                painter.drawRect((x+margin)*radio, (y+margin)*radio, 1*radio, 1*radio);
+                painter.drawRect((x + margin) * ratio, (y + margin) * ratio, 1 * ratio, 1 * ratio);
         }
     }
 
